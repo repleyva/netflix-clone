@@ -12,10 +12,20 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signIn = () => {};
+  const signIn = (e) => {
+		e.preventDefault();
+		auth
+      .signInWithEmailAndPassword(email, password)
+      .then((authUser) => console.log(authUser))
+      .catch((error) => alert(error.message));
+	};
+
   const signUp = (e) => {
     e.preventDefault();
-    auth.createUserWithEmailPassword(email, password).then().catch();
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => console.log(authUser))
+      .catch((error) => alert(error.message));
   };
 
   return (
@@ -42,6 +52,7 @@ const SignUp = () => {
                 width="100%"
                 placeholder="Email o número de teléfono"
                 value={email}
+								type="email"
                 onChange={(e) => setEmail(e.target.value)}
               />
               <NetflixInput
@@ -52,6 +63,7 @@ const SignUp = () => {
                 width="100%"
                 placeholder="Contraseña"
                 value={password}
+								type="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
               <NetflixButton
@@ -69,7 +81,6 @@ const SignUp = () => {
                     type="checkbox"
                     name="rememberme"
                     id="rememberme"
-                    checked
                   />
                   <label
                     htmlFor="rememberme"
