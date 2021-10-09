@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Paypal from "./pages/Paypal";
@@ -9,6 +9,13 @@ import Wellcome from "./pages/Wellcome";
 function App() {
   const user = null; // usuario de netflix
   const classes = useStyles();
+
+	useEffectt(() => {
+		effect
+		return () => {
+			cleanup
+		}
+	}, [input])
 
   return (
     <div className={classes.root}>
