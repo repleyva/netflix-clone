@@ -1,12 +1,19 @@
 import { makeStyles, Typography } from "@material-ui/core";
 import React from "react";
+import { useHistory } from "react-router";
 import Header from "../components/Header";
 import Plans from "../components/Plans";
+import { auth } from "../helpers/firebase";
 import netflixAvatar from "../images/netflix-avatar.png";
 import { NetflixButton } from "../styled/StyledComponents";
 
 const Profile = () => {
   const classes = useStyles();
+  const history = useHistory();
+  const signout = () => {
+    auth.signOut();
+    history.push("/");
+  };
 
   return (
     <div className={classes.root}>
@@ -42,7 +49,9 @@ const Profile = () => {
               <Plans cost={38900} color="gray" wide="middlewidth">
                 Netflix Premium
               </Plans>
-              <NetflixButton wide="fullwidth">Cerrar sesión</NetflixButton>
+              <NetflixButton onClick={signout} wide="fullwidth">
+                Cerrar sesión
+              </NetflixButton>
             </div>
           </div>
         </div>
@@ -77,16 +86,16 @@ const useStyles = makeStyles((theme) => ({
   },
 
   details: {
-		width: "100%",
-		marginLeft: theme.spacing(3),
-	},
+    width: "100%",
+    marginLeft: theme.spacing(3),
+  },
 
-	plans: {
-		width: "100%",
-		"& h5": {
-			borderBottom: "1px solid lightgray"
-		},
-	},
+  plans: {
+    width: "100%",
+    "& h5": {
+      borderBottom: "1px solid lightgray",
+    },
+  },
 })); // importamos el hook
 
 export default Profile;

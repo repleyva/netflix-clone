@@ -16,15 +16,16 @@ const SignUp = () => {
 		e.preventDefault();
 		auth
       .signInWithEmailAndPassword(email, password)
-      .then((authUser) => console.log(authUser))
+      .then((authUser) => history.push("/"))
       .catch((error) => alert(error.message));
+
 	};
 
   const signUp = (e) => {
     e.preventDefault();
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then((authUser) => console.log(authUser))
+      .then((authUser) => history.push("/"))
       .catch((error) => alert(error.message));
   };
 

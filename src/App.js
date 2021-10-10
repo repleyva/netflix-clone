@@ -1,27 +1,46 @@
 import { makeStyles } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { login, logout, selectUser } from "./features/userSlice";
+import { auth } from "./helpers/firebase";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import Paypal from "./pages/Paypal";
 import Profile from "./pages/Profile";
+import SignUp from "./pages/SignUp";
 import Wellcome from "./pages/Wellcome";
 
 function App() {
-  const user = null; // usuario de netflix
+  const user = useSelector(selectUser); // usuario de netflix
+  const [isLogin, setIsLogin] = useState(user);
   const classes = useStyles();
+  const dispatch = useDispatch();
 
-	useEffectt(() => {
-		effect
-		return () => {
-			cleanup
-		}
-	}, [input])
+  useEffect(() => {
+    // si hay un cambio en el usuario en firebase
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      if (userAuth) {
+        dispatch(
+          login({
+            uid: userAuth.uid,
+            email: userAuth.email,
+          })
+        );
+        setIsLogin(true);
+      } else {
+        dispatch(logout);
+        setIsLogin(false);
+      }
+    });
+    return unsubscribe;
+  }, [dispatch]);
 
   return (
     <div className={classes.root}>
       <Router>
-        {!user ? (
-          <Wellcome />
+        {!isLogin ? (
+          <Wellcome/>
         ) : (
           <Switch>
             <Route exact path="/profile" component={Profile} />
