@@ -5,10 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { login, logout, selectUser } from "./features/userSlice";
 import { auth } from "./helpers/firebase";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
 import Paypal from "./pages/Paypal";
 import Profile from "./pages/Profile";
-import SignUp from "./pages/SignUp";
 import Wellcome from "./pages/Wellcome";
 
 function App() {

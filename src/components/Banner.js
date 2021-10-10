@@ -11,7 +11,8 @@ const Banner = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.content}>
+      <div className={classes.fadeTop}></div>
+      <div className={classes.title}>
         <Typography variant="h2" component="h1">
           Movie Title
         </Typography>
@@ -25,11 +26,7 @@ const Banner = () => {
           Más Información
         </Button>
       </div>
-      <Typography
-        style={{ wordWrap: "break-word" }}
-        variant="h6"
-        className={classes.description}
-      >
+      <Typography variant="h6" className={classes.description}>
         {truncate(
           "Movie Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus libero eaque ipsam quis assumenda voluptatum ducimus voluptate voluptatibus blanditiis illo dolor, accusamus tenetur provident asperiores ratione ut mollitia eum itaque. Lorem ipsum dolor lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus libero eaque ipsam quis assumenda voluptatum ducimus voluptate voluptatibus blanditiis illo dolor, accusamus tenetur provident asperiores ratione ut mollitia eum itaque. Lorem ipsum dolor lorem",
           200
@@ -52,9 +49,13 @@ const useStyles = makeStyles((theme) => ({
     color: "#fff",
   },
 
+  title: { position: "relative", zIndex: "30" },
+
   icon: {
     marginRight: "5px",
   },
+
+  description: { position: "relative", wordWrap: "break-word", zIndex: "30" },
 
   buttons: {
     "& button": {
@@ -64,7 +65,8 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: "5px",
       backgroundColor: "rgba(51, 51, 51, 0.5)",
       textTransform: "capitalize",
-			padding: "4px 15px",
+      padding: "4px 15px",
+      zIndex: "30",
     },
 
     "& button:hover": {
@@ -75,13 +77,24 @@ const useStyles = makeStyles((theme) => ({
 
   fadeBottom: {
     position: "absolute",
-    top: "30vh",
+    top: "10vh",
     bottom: "0",
     left: 0,
     right: 0,
-    zIndex: 99,
+    zIndex: 3,
     backgroundImage:
-      "linear-gradient(180deg, transparent, rgba(37, 37, 37, 0.61), #111)",
+      "linear-gradient(180deg, transparent, rgba(37, 37, 37, 0.3), #111)",
+  },
+
+  fadeTop: {
+    position: "absolute",
+    top: "0",
+    bottom: "10vh",
+    left: 0,
+    right: 0,
+    zIndex: 3,
+    backgroundImage:
+      "linear-gradient(0deg, transparent, rgba(37, 37, 37, 0.3), rgba(37, 37, 37, 0.3))",
   },
 })); // importamos el hook
 
