@@ -11,7 +11,7 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
   useEffect(() => {
     const fetchData = async () => {
       const request = await api.get(fetchUrl);
-			console.log(request);
+      console.log(request);
       setMovies(request.results);
       return request;
     };
@@ -20,8 +20,25 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h4">{title}</Typography>
-      <div className={classes.posters}></div>
+      <Typography variant="h5" style={{marginBottom: ".5rem"}}>{title}</Typography>
+      <div className={classes.posters}>
+        {movies.map(
+          (movie) =>
+            ((isLargeRow && movie.poster_path) ||
+              (!isLargeRow && movie.backdrop_path)) && (
+              <img
+                className={`${classes.poster} ${
+                  isLargeRow && classes.posterLarge
+                }`}
+                key={movie.id}
+                src={`${base_url}${
+                  isLargeRow ? movie.poster_path : movie?.backdrop_path
+                }`}
+                alt={movie?.name}
+              />
+            )
+        )}
+      </div>
     </div>
   );
 };
@@ -30,7 +47,35 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
 const useStyles = makeStyles((theme) => ({
   root: {
     color: "#fff",
+    margin: "0 3rem",
+		paddingBottom: "2rem",
   },
+
+  posters: {
+    display: "flex",
+    overflowY: "hidden",
+    overflowX: "scroll",
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+  },
+
+  poster: {
+    maxHeight: "12rem",
+    objectFit: "contain",
+    marginRight: theme.spacing(1),
+    transition: "transform 450ms",
+    "&:hover": {
+      transform: "scale(1.1)",
+    },
+  },
+
+	posterLarge: {
+		maxHeight: "15rem",
+		"&:hover": {
+			transform: "scale(1.15)"
+		}
+	}
 })); // importamos el hook
 
 export default Row;

@@ -12,26 +12,28 @@ const Banner = () => {
   return (
     <div className={classes.root}>
       <div className={classes.fadeTop}></div>
-      <div className={classes.title}>
-        <Typography variant="h2" component="h1">
-          Movie Title
+      <div className={classes.container}>
+        <div className={classes.title}>
+          <Typography variant="h2" component="h1">
+            Movie Title
+          </Typography>
+        </div>
+        <div className={classes.buttons}>
+          <Button style={{ backgroundColor: "#e6e6e6", color: "#111" }}>
+            <PlayArrowIcon className={classes.icon} /> Reproducir
+          </Button>
+          <Button style={{marginLeft: ".7rem"}}>
+            <InfoOutlinedIcon className={classes.icon} />
+            Más Información
+          </Button>
+        </div>
+        <Typography variant="h7" className={classes.description}>
+          {truncate(
+            "Movie Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus libero eaque ipsam quis assumenda voluptatum ducimus voluptate voluptatibus blanditiis illo dolor, accusamus tenetur provident asperiores ratione ut mollitia eum itaque. Lorem ipsum dolor lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus libero eaque ipsam quis assumenda voluptatum ducimus voluptate voluptatibus blanditiis illo dolor, accusamus tenetur provident asperiores ratione ut mollitia eum itaque. Lorem ipsum dolor lorem",
+            200
+          )}
         </Typography>
       </div>
-      <div className={classes.buttons}>
-        <Button style={{ backgroundColor: "#e6e6e6", color: "#111" }}>
-          <PlayArrowIcon className={classes.icon} /> Reproducir
-        </Button>
-        <Button>
-          <InfoOutlinedIcon className={classes.icon} />
-          Más Información
-        </Button>
-      </div>
-      <Typography variant="h6" className={classes.description}>
-        {truncate(
-          "Movie Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus libero eaque ipsam quis assumenda voluptatum ducimus voluptate voluptatibus blanditiis illo dolor, accusamus tenetur provident asperiores ratione ut mollitia eum itaque. Lorem ipsum dolor lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus libero eaque ipsam quis assumenda voluptatum ducimus voluptate voluptatibus blanditiis illo dolor, accusamus tenetur provident asperiores ratione ut mollitia eum itaque. Lorem ipsum dolor lorem",
-          200
-        )}
-      </Typography>
       <div className={classes.fadeBottom}></div>
     </div>
   );
@@ -49,15 +51,29 @@ const useStyles = makeStyles((theme) => ({
     color: "#fff",
   },
 
+  container: {
+    position: "absolute",
+    width: "40%",
+    bottom: "50px",
+    marginLeft: "3rem",
+  },
+
   title: { position: "relative", zIndex: "30" },
 
   icon: {
     marginRight: "5px",
   },
 
-  description: { position: "relative", wordWrap: "break-word", zIndex: "30" },
+  description: {
+    position: "relative",
+    wordWrap: "break-word",
+    zIndex: "30",
+    textAlign: "justify",
+    lineHeight: 1.2,
+  },
 
   buttons: {
+    marginBottom: "1rem",
     "& button": {
       cursor: "pointer",
       color: "#fff",

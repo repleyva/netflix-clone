@@ -31,7 +31,7 @@ const Home = () => {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#111",
-    height: "100%",
+    height: "auto",
   },
 })); // importamos el hook
 
