@@ -1,16 +1,36 @@
 import { Button, makeStyles, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import banner from "../images/netflix.jpg";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import { helpHttps } from "../helpers/helpHttps";
+import requests from "../helpers/request";
 
 const Banner = () => {
   const classes = useStyles();
+  const [movie, setMovie] = useState([]);
   const truncate = (string, n) =>
     string.length > n ? `${string.substr(0, n - 1)}...` : string;
+  let api = helpHttps();
+  let bannerUrl = requests.fetchNetflixOriginals;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const request = await api.get(bannerUrl);
+      const random = Math.floor(Math.random() * request.results.length - 1);
+      setMovie(request.results[random]);
+      return request;
+    };
+    fetchData();
+  }, []); // cuando search cambie entonces se ejecuta el efecto
 
   return (
-    <div className={classes.root}>
+    <div
+      className={classes.root}
+      style={{
+        backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
+      }}
+    >
       <div className={classes.fadeTop}></div>
       <div className={classes.container}>
         <div className={classes.title}>
@@ -22,7 +42,7 @@ const Banner = () => {
           <Button style={{ backgroundColor: "#e6e6e6", color: "#111" }}>
             <PlayArrowIcon className={classes.icon} /> Reproducir
           </Button>
-          <Button style={{marginLeft: ".7rem"}}>
+          <Button style={{ marginLeft: ".7rem" }}>
             <InfoOutlinedIcon className={classes.icon} />
             Más Información
           </Button>
@@ -42,7 +62,6 @@ const Banner = () => {
 // inicializamos los valores del theme
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundImage: `url(${banner})`,
     position: "relative",
     height: "440px",
     objectFit: "cover",
