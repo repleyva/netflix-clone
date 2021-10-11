@@ -60,10 +60,12 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     left: 0,
     right: 0,
+    transition: "all .7s ease",
   },
 
   transparent: {
     backgroundColor: "transparent",
+    transition: "all .7s ease-in",
   },
 
   toolbar: {
@@ -78,8 +80,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   user: {
-		width: "40px",
-	}
+    width: "40px",
+  },
 })); // importamos el hook
 
 export default Header;

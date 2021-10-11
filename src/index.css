@@ -15,3 +15,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html::-webkit-scrollbar {
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 8px;    /* Tamaño del scroll en horizontal */
+		background-color: #111
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+html::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+html::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}

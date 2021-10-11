@@ -1,6 +1,5 @@
 import { Button, makeStyles, Typography } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import banner from "../images/netflix.jpg";
+import React, { memo, useEffect, useState } from "react";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import { helpHttps } from "../helpers/helpHttps";
@@ -18,6 +17,7 @@ const Banner = () => {
     const fetchData = async () => {
       const request = await api.get(bannerUrl);
       const random = Math.floor(Math.random() * request.results.length - 1);
+      // console.log(request.results[random]);
       setMovie(request.results[random]);
       return request;
     };
@@ -35,7 +35,7 @@ const Banner = () => {
       <div className={classes.container}>
         <div className={classes.title}>
           <Typography variant="h2" component="h1">
-            Movie Title
+            {movie.title || movie.name || movie.original_name}
           </Typography>
         </div>
         <div className={classes.buttons}>
@@ -48,10 +48,7 @@ const Banner = () => {
           </Button>
         </div>
         <Typography variant="h7" className={classes.description}>
-          {truncate(
-            "Movie Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus libero eaque ipsam quis assumenda voluptatum ducimus voluptate voluptatibus blanditiis illo dolor, accusamus tenetur provident asperiores ratione ut mollitia eum itaque. Lorem ipsum dolor lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus libero eaque ipsam quis assumenda voluptatum ducimus voluptate voluptatibus blanditiis illo dolor, accusamus tenetur provident asperiores ratione ut mollitia eum itaque. Lorem ipsum dolor lorem",
-            200
-          )}
+          {truncate(`${movie.overview}`, 200)}
         </Typography>
       </div>
       <div className={classes.fadeBottom}></div>
@@ -77,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "3rem",
   },
 
-  title: { position: "relative", zIndex: "30" },
+  title: { position: "relative", zIndex: "30", marginBottom: ".5rem" },
 
   icon: {
     marginRight: "5px",
@@ -92,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   buttons: {
-    marginBottom: "1rem",
+    marginBottom: "1.5rem",
     "& button": {
       cursor: "pointer",
       color: "#fff",
@@ -133,4 +130,4 @@ const useStyles = makeStyles((theme) => ({
   },
 })); // importamos el hook
 
-export default Banner;
+export default memo(Banner);
