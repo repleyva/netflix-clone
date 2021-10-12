@@ -11,7 +11,7 @@ const Plans = ({ children, color = "red", wide, cost }) => {
 	const history = useHistory()
   const handleClick = (cost) => {
     dispatch(setPrice(cost));
-		history.push("/checkout");
+		/* history.push("/checkout"); */
   };
   return (
     <div className={classes.root}>
