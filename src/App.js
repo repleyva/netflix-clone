@@ -10,7 +10,7 @@ import Profile from "./pages/Profile";
 import Wellcome from "./pages/Wellcome";
 
 function App() {
-  const user = useSelector(selectUser); // usuario de netflix
+  const user = useSelector(selectUser);
   const [isLogin, setIsLogin] = useState(user);
   const classes = useStyles();
   const dispatch = useDispatch();
