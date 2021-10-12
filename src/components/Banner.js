@@ -10,12 +10,9 @@ const Banner = () => {
   const [movie, setMovie] = useState([]);
   const truncate = (string, n) =>
     string.length > n ? `${string.substr(0, n - 1)}...` : string;
-  let api = helpHttps();
-  let bannerUrl = requests.fetchNetflixOriginals;
-
   useEffect(() => {
     const fetchData = async () => {
-      const request = await api.get(bannerUrl);
+      const request = await helpHttps().get(requests.fetchNetflixOriginals);
       const random = Math.floor(Math.random() * request.results.length - 1);
       // console.log(request.results[random]);
       setMovie(request.results[random]);
