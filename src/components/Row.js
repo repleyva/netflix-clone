@@ -108,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: "2",
     maxHeight: "12rem",
     objectFit: "contain",
-    marginRight: theme.spacing(1),
+    margin: "0 .5rem",
     transition: "transform 200ms",
   },
 
@@ -116,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: "2",
     maxHeight: "15rem",
     objectFit: "contain",
-    marginRight: theme.spacing(1),
+    margin: "0 .5rem",
     transition: "transform 200ms",
   },
 
