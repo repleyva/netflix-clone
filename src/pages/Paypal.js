@@ -1,22 +1,62 @@
-import { makeStyles } from '@material-ui/core';
-import React from 'react'
+import { makeStyles } from "@material-ui/core";
+import React, { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+import { selectPrice } from "../features/priceSlice";
 
 const Paypal = () => {
   const classes = useStyles();
+  const paypal = useRef();
+  const price = useSelector(selectPrice);
 
-	return (
-		<div>
-			<h2>Paypal</h2>
-		</div>
-	)
-}
+  useEffect(() => {
+    window.paypal
+      .Buttons({
+        createOrder: (data, actions, err) => {
+          return actions.order.create({
+            intent: "CAPTURE",
+            pruchase_units: [
+              {
+                description: "Netflix Subscription",
+                amount: {
+                  currency_code: "COP",
+                  value: price,
+                },
+              },
+            ],
+          });
+        },
+        onApprove: async (data, actions) => {
+          const order = await actions.order.capture();
+        },
+        onError: (err) => console.log(err),
+      })
+      .render(paypal.current);
+  }, []);
 
-// inicializamos los valores del theme
+  return (
+    <div className={classes.root}>
+      <div className={classes.container}>
+        <div ref={paypal} className={classes.paypal}></div>
+      </div>
+    </div>
+  );
+};
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    /* backgroundColor: "#111",
-    minHeight: "100vh", */
+    backgroundColor: "#111",
+    display: "flex",
+    width: "100%",
+    height: "100vh",
+    justifyContent: "center",
+    alignItems: "center",
+    verticalAlign: "middle",
   },
-})); // importamos el hook
 
-export default Paypal
+  container: {
+    width: "70%",
+    margin: "0 auto",
+  },
+}));
+
+export default Paypal;

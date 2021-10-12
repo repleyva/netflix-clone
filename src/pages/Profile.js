@@ -8,6 +8,9 @@ import netflixAvatar from "../images/netflix-avatar.png";
 import { NetflixButton } from "../styled/StyledComponents";
 
 const Profile = () => {
+	const PRICE_STANDAR = 16900;
+	const PRICE_BASIC = 26900;
+	const PRICE_PREMIUM = 38900;
   const classes = useStyles();
   const history = useHistory();
   const signout = () => {
@@ -44,9 +47,9 @@ const Profile = () => {
               <Typography variant="h5" gutterBottom>
                 Planes
               </Typography>
-              <Plans cost={16900}>Netflix Standar</Plans>
-              <Plans cost={26900}>Netflix Basic</Plans>
-              <Plans cost={38900} color="gray" wide="middlewidth">
+              <Plans cost={PRICE_STANDAR}>Netflix Standar</Plans>
+              <Plans cost={PRICE_BASIC}>Netflix Basic</Plans>
+              <Plans cost={PRICE_PREMIUM} color="gray" wide="middlewidth">
                 Netflix Premium
               </Plans>
               <NetflixButton onClick={signout} wide="fullwidth">

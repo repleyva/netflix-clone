@@ -54,6 +54,7 @@ const SignUp = () => {
                 placeholder="Email o número de teléfono"
                 value={email}
 								type="email"
+								autoComplete
                 onChange={(e) => setEmail(e.target.value)}
               />
               <NetflixInput

@@ -54,6 +54,7 @@ function App() {
 // inicializamos los valores del theme
 const useStyles = makeStyles((theme) => ({
   root: {
+		backgroundColor: "#111"
   },
 })); // importamos el hook
 

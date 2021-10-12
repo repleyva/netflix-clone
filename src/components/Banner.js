@@ -39,13 +39,15 @@ const Banner = () => {
           </Typography>
         </div>
         <div className={classes.buttons}>
-          <Button style={{ backgroundColor: "#e6e6e6", color: "#111" }}>
-            <PlayArrowIcon className={classes.icon} /> Reproducir
-          </Button>
-          <Button style={{ marginLeft: ".7rem" }}>
-            <InfoOutlinedIcon className={classes.icon} />
-            Más Información
-          </Button>
+          <div className={classes.buttonsContainer}>
+            <Button style={{ backgroundColor: "#e6e6e6", color: "#111" }}>
+              <PlayArrowIcon className={classes.icon} /> Reproducir
+            </Button>
+            <Button>
+              <InfoOutlinedIcon className={classes.icon} />
+              Más Información
+            </Button>
+          </div>
         </div>
         <Typography variant="h7" className={classes.description}>
           {truncate(`${movie.overview}`, 200)}
@@ -104,6 +106,15 @@ const useStyles = makeStyles((theme) => ({
     "& button:hover": {
       color: "#000",
       backgroundColor: "#e6e6e6",
+    },
+  },
+
+  buttonsContainer: {
+    width: "100%",
+    display: "flex",
+    gap: ".7rem",
+    ["@media (max-width:832px)"]: {
+      display: "block",
     },
   },
 
