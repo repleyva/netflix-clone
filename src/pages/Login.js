@@ -11,7 +11,7 @@ import { useHistory } from "react-router";
 
 const Login = () => {
   const classes = useStyles();
-	const history = useHistory()
+  const history = useHistory();
 
   return (
     <div>
@@ -121,10 +121,19 @@ const useStyles = makeStyles((theme) => ({
     width: "145px",
     cursor: "pointer",
     marginLeft: 50,
+    ["@media (max-width:500px)"]: {
+      width: "100px",
+      marginLeft: 25,
+    },
   },
 
   session: {
     marginRight: 50,
+    ["@media (max-width:500px)"]: {
+      marginRight: 25,
+			width: "100px !important",
+			fontSize: ".7rem !important"
+    },
   },
 
   header: {
